@@ -2,24 +2,16 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-// configurar o express como motor de visualização
+const mainRoutes = require('./src/routes/main');
+
+app.use(express.urlencoded({ extended: true})); // Isso permite que o Node entenda dados vindos de formulários HTML
 app.set('view engine', 'ejs');
-app.set('views', './src/views'); 
+app.set('views', './src/views'); // Avisa onde estão os arquivos HTML/EJS
+app.use(express.static('public')); // Pasta para CSS/Imagens
 
-// Pasta pública para CSS e Imagens
-app.use(express.static('public'));
-
-// Rota inicial
-app.get('/', (req, res) => {
-
-    // Simula dados vindo do banco
-    const produtos = [
-        {nome: 'teclado mecanico', preco:150},
-        { nome: 'mouse gamer', preco: 80}
-    ];
-    res.render('index', {produtos: produtos});
-});
+// "Toda vez que alguém acessar a raiz ('/'), use as regras do mainRoutes"
+app.use('/', mainRoutes);
 
 app.listen(port, () => {
-    console.log(`servidor rodando em localhost:&{port}`);
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
