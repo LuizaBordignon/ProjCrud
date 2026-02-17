@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1>Loja de Eletrônicos</h1>
+    <ul>
+        <% produtos.forEach(function(produto) { %>
+            <li><%= produto.nome %> - R$ <%= produto.preco %></li>
+        <% }); %>
+    </ul>
+</body>
+</html>
