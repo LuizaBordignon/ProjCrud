@@ -6,8 +6,12 @@
 <body>
     <h1>Loja de Eletrônicos</h1>
     <ul>
-        <% produtos.forEach(function(produto) { %>
-            <li><%= produto.nome %> - R$ <%= produto.preco %></li>
+        <% produtos.forEach(function(produto, index) { %>
+            <li>
+                <%= produto.nome %> - R$ <%= produto.preco %>
+                
+                <a href="/deletar/<%= index %>" style="color: red;">[Excluir]</a>
+            </li>
         <% }); %>
     </ul>
 </body>

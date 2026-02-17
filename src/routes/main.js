@@ -36,4 +36,16 @@ router.post('/adicionar', (req, res) => {
     res.redirect('/');
 });
 
+// Rota 4: Deletar um produto
+// O ":id" é um curinga. Ele pega qualquer coisa que vier depois da barra.
+router.get('/deletar/:id', (req, res) => {
+    const index = req.params.id; // Pega o número que veio no link
+    
+    // O comando .splice(posicao, quantidade) remove itens do array
+    produtos.splice(index, 1); 
+    
+    // Recarrega a página inicial
+    res.redirect('/');
+});
+
 module.exports = router;
